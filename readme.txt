@@ -15,3 +15,5 @@ Part II
 Each user has also visited 0 or more cities and has a % rating for each city visited. Implement
 an algorithm which recommends cities to a user based on the social graph. The user must not
 have visited any city which is recommended to them.
+--------------------------------------------------------------------------------------------
+use socialgraph.sql to create table on mysql
