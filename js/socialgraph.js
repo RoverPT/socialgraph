@@ -7,9 +7,9 @@ function listallusers() {
                 for (let i = 0; i < data.result.length; i++) {
                     $finallist = '<li class="list-group-item list-group-item-action" id="user' + data.result[i]._id + '" + \
                     onclick="filluserinfo(' + data.result[i]._id + ')" \
-                    age="' + data.result[i].age + '" \
+                    age="' + removeNULL(data.result[i].age) + '" \
                     gender="' + data.result[i].gender + '"><span id="raw_firstname' + data.result[i]._id + '">' + data.result[i].firstname + '</span> \
-                    <span id="raw_surname' + data.result[i]._id + '">' + data.result[i].surname + '</span></li>';
+                    <span id="raw_surname' + data.result[i]._id + '">' + removeNULL(data.result[i].surname) + '</span></li>';
                     $("#userlist").append($finallist);
                 }
             }
@@ -53,7 +53,7 @@ function get_directfriends(in_id) {
         function (data) {
             if (data.response.code == 0) {
                 for (let i = 0; i < data.result.length; i++) {
-                    $final_direct = '<li class="list-group-item list-group-item-action" >' + data.result[i].firstname + ' ' + data.result[i].surname + '</li>';
+                    $final_direct = '<li class="list-group-item list-group-item-action" >' + data.result[i].firstname + ' ' + removeNULL(data.result[i].surname) + '</li>';
                     $("#direct_friends").append($final_direct);
                 }
             }
@@ -74,7 +74,7 @@ function get_friendsoffriends(in_id) {
         function (data) {
             if (data.response.code == 0) {
                 for (let i = 0; i < data.result.length; i++) {
-                    $final_foff = '<li class="list-group-item list-group-item-action" >' + data.result[i].firstname + ' ' + data.result[i].surname + '</li>';
+                    $final_foff = '<li class="list-group-item list-group-item-action" >' + data.result[i].firstname + ' ' + removeNULL(data.result[i].surname) + '</li>';
                     $("#friendsoffriends").append($final_foff);
                 }
             }
@@ -128,4 +128,11 @@ function get_recomendedcities(in_id) {
     ).fail(function (error_data) {
         console.log("fail", error_data);
     });
+}
+
+function removeNULL(inText) {
+    if (inText == null) {
+         return "&nbsp;" 
+    }
+    return inText;
 }
