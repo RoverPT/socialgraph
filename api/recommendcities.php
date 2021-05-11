@@ -17,9 +17,9 @@ try {
     select cities.citie_name from cities where _id not in (select id_citie from travel where id_user=:user3)";
     $stm = $conn->prepare($sql);
     $stm->execute([
-        "::user1" => $_GET["id"],
-        "::user2" => $_GET["id"],
-        "::user3" => $_GET["id"]
+        ":user1" => $_GET["id"],
+        ":user2" => $_GET["id"],
+        ":user3" => $_GET["id"]
     ]);
 
     $response = $stm->fetchall(PDO::FETCH_ASSOC);
