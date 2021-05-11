@@ -6,7 +6,7 @@ try {
 
     $sql = "SELECT 
     _id, firstname, surname, age, gender
-     FROM phptest.users 
+     FROM users 
     order by firstname asc;";
     $stm = $conn->prepare($sql);
     $stm->execute();

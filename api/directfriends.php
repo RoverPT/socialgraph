@@ -9,7 +9,7 @@ try {
 
     $conn = open_BD();
 
-    $sql = "SELECT users.firstname , users.surname FROM phptest.connections 
+    $sql = "SELECT users.firstname , users.surname FROM connections 
     inner join users on users._id = id_user_2
     where id_user_1=:id_user
     order by users.firstname;";
