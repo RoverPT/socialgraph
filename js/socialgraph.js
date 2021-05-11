@@ -36,6 +36,7 @@ function filluserinfo(in_id) {
     get_directfriends(in_id);
     get_friendsoffriends(in_id);
     get_suggestedfriends(in_id);
+    get_recomendedcities(in_id);
 }
 
 function clean_info() {
@@ -96,6 +97,27 @@ function get_suggestedfriends(in_id) {
                 for (let i = 0; i < data.result.length; i++) {
                     $final_susfrie = '<li class="list-group-item list-group-item-action" >' + data.result[i].firstname + ' ' + data.result[i].surname + '</li>';
                     $("#suggestedfriends").append($final_susfrie);
+                }
+            }
+            else {
+                console.log("load error", data.response.message);
+            }
+        },
+        "json"
+    ).fail(function (error_data) {
+        console.log("fail", error_data);
+    });
+}
+
+function get_recomendedcities(in_id) {
+
+    $.get(
+        "api/recommendcities.php", { id: in_id },
+        function (data) {
+            if (data.response.code == 0) {
+                for (let i = 0; i < data.result.length; i++) {
+                    $final_citie = '<li class="list-group-item list-group-item-action" >' + data.result[i].citie_name + '</li>';
+                    $("#recommendedcities").append($final_citie);
                 }
             }
             else {
