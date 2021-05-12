@@ -13,8 +13,7 @@ try {
     join cities on cities._id = travel.id_citie
     where id_citie not in (select id_citie from travel where id_user=:user1)
     and id_user in (select id_user_2 from  connections where id_user_1=:user2)
-    union 
-    select cities.citie_name from cities where _id not in (select id_citie from travel where id_user=:user3)";
+    ";
     $stm = $conn->prepare($sql);
     $stm->execute([
         ":user1" => $_GET["id"],
